@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas 绘制统计图</title>
+    <style>
+        canvas{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="c"></canvas>
+    <script>
+       const data  = [
+           {label:'大漠穷秋',value:400},
+           {label:'燕云长风',value:500},
+           {label:'大漠穷秋',value:200},
+           {label:'燕云长风',value:100},
+           {label:'大漠穷秋',value:300},
+           {label:'燕云长风',value:450},
+       ]
+       const w = 800;
+       const h = 600;
+       c.width = w;
+       c.height = h;
+
+       const ctx = c.getContext('2d');
+       ctx.strokeRect(50,50,w-100,h-100);
+       const count = data.length;
+       const colWidth = (w-100)/(2*count+1);
+       for(let i = 0;i < count; i++){
+           const temp = data[i];
+           const rw = colWidth;
+           const rh = temp.value;
+           const x = (i*2+1)*colWidth+50;
+           const y = h-50-rh;
+           //使用渐变色填充
+           var g  = ctx.createLinearGradient(x,y,x,y+rh);
+           g.addColorStop(0,rc());
+           g.addColorStop(1,'#fff');
+           ctx.fillStyle = g;
+           ctx.fillRect(x,y,rw,rh);
+       }
+       function rc(){
+           const r = Math.floor(Math.random()*256);
+           const g = Math.floor(Math.random()*256);
+           const b = Math.floor(Math.random()*256);
+           return `rgba(${r},${g},${b},.6)`
+       }
+    </script>
+</body>
+</html>
