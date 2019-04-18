@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas 的使用</title>
+    <style>
+      body{
+          text-align: center;
+      }
+      canvas{
+          background-color: aqua;
+          /* 注意canvas 元素不能用css属性指定宽和高，如果制定后，只是对图形进行了缩放，不是实际的宽和高 */
+      }
+    </style>
+</head>
+<body>
+    <canvas id="c" width="600" height="400"></canvas>
+    <canvas id="c2" width="600" height="400"></canvas>
+    <script>
+       const ctx = c.getContext('2d');
+       //左上角填充矩形
+       
+       ctx.fillRect(0,0,100,80);
+
+       //右上角描边矩形
+
+       ctx.lineWidth = 1;
+
+       ctx.strokeRect(600-100-5,0+5,100,80);
+
+       //左下角填充矩形
+       ctx.fillStyle ='#01869a';
+       ctx.fillRect(0,400-80,100,80)
+
+       //右下角描边矩形
+
+       ctx.strokeStyle = '#e4393a';
+
+       ctx.strokeRect(600-100-5,400-80-5,100,80);
+
+       //正中央填充+描边一个矩形
+          //分两种情况：
+          //1.先填充，后描边  （描边矩形会压住一部分填充矩形）;
+          //2.先描边，后填充 (填充矩形会占据一部分描边矩形的空间)
+
+       ctx.fillRect(600/2-100/2,400/2-80/2,100,80);
+       ctx.strokeRect(600/2-100/2,400/2-80/2,100,80);
+
+
+       // 可以慢慢变长的矩形
+       const ctx2 = c2.getContext('2d');
+
+       let x  = 0 ;
+       let y= 0;
+       setInterval(function(){
+        //    ctx2.clearRect(0,0,600,400);
+        //    x+=5;
+        //    ctx2.strokeRect(x,100,100,80)
+       },200)
+       //斜向下移动的矩形
+
+       setInterval(function(){
+           ctx2.clearRect(0,0,600,400);
+           x+=5;
+           y+= 5 * Math.tan(Math.PI/6);
+           ctx2.strokeRect(x,y,100,80)
+       },500)
+    </script>
+</body>
+</html>
