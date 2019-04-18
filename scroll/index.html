@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #toTop{
+            position: fixed;
+            bottom: 15px;
+            display: none;
+            right: 0;
+        }
+        body{
+            height: 2000px;
+         
+        }
+    </style>
+</head>
+<body>
+    <div id="toTop">
+        <a href="#">返回顶部</a>
+    </div>
+     <script>
+         window.addEventListener('scroll',()=>{
+             let scrollTop  = document.documentElement.scrollTop;
+             console.log(scrollTop)
+             document.getElementById('toTop').style.display = scrollTop>300?'block':'none'
+         })
+     </script>
+</body>
+</html>

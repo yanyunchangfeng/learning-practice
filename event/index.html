@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </form>
+    <input type="checkbox" id="checkbox" /><label for="checkbox">Checkbox</label>
+    <input type="button" onclick="simulateClick();" value="Simulate click" />
+    <input type="button" onclick="addHandler();" value="Add a click handler that calls preventDefault" />
+    <input type="button" onclick="removeHandler();" value="Remove the click handler that calls preventDefault" />
+    <script>
+        //创建自定义事件 任意元素均可触发事件
+
+        const event = new Event("look", { "bubbles": true, "cancelable": false });
+        document.body.addEventListener('look', e => { console.log(e, 'look事件触发') });
+        document.body.dispatchEvent(event);
+
+        //此处添加自定义数据 - CustomEvent() 事件冒泡  通常需要从子元素触发事件，并让祖先捕获它：
+
+        const form = document.querySelector('form');
+        const textarea = document.querySelector('textarea');
+        const awesome = new CustomEvent('awesome', {
+            bubbles: true,
+            detail: {
+                text: () => textarea.value
+            },
+        })
+        form.addEventListener('awesome', e => console.log(e.detail.text()));
+        textarea.addEventListener('input', e => e.target.dispatchEvent(awesome));
+
+        //动态创建和派发事件   元素可以监听未创建的事件
+
+        form.addEventListener('awesome', e => e.detail.text());
+        textarea.addEventListener('input', function () {
+            this.dispatchEvent(new CustomEvent('awesome', {
+                bubbles: true,
+                detail: textarea.value
+            }))
+        })
+       //触发内置事件
+        const  chb =  document.getElementById('checkbox');
+        function addHandler(){
+          chb.addEventListener('click',preventDef)
+        }
+        function removeHandler(){
+          chb.removeEventListener('click',preventDef)
+        }
+        function preventDef(event){
+         event.preventDefault();
+        }
+        function simulateClick(){
+            const event  = new MouseEvent('click',{
+                view:window,
+                bubbles:true,
+                cancelable:true
+            });
+            const canceled = !chb.dispatchEvent(event);
+            console.log(event)
+            console.log(canceled)
+            if(canceled){
+               alert('canceled')
+            }else{
+            alert('not canceld')
+            }
+
+        }
+    </script>
+</body>
+
+</html>

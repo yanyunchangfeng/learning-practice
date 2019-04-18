@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      #pop {
+        width: 100px;
+        position: fixed;
+        height: 100px;
+        background-color: aquamarine;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pop"></div>
+    <script>
+      var game = {
+        pop: null,
+        PSIZE: 0,
+        MAXTOP: 0,
+        MAXLEFT: 0,
+        init() {
+          this.pop = document.getElementById("pop");
+          this.PSIZE = parseFloat(getComputedStyle(this.pop).width);
+          this.MAXTOP = window.innerHeight - this.PSIZE;
+          this.MAXLEFT = window.innerWidth - this.PSIZE;
+          console.log(this.PSIZE, this.MAXLEFT, this.MAXTOP);
+          var rTop = Math.floor(Math.random() * (this.MAXTOP + 1));
+          var rLeft = Math.floor(Math.random() * (this.MAXLEFT + 1));
+          this.pop.style.top = rTop + "px";
+          this.pop.style.left = rLeft + "px";
+          this.pop.addEventListener("mouseover", e => {
+            while (true) {
+              var rTop = Math.floor(Math.random() * (this.MAXTOP + 1));
+              var rLeft = Math.floor(Math.random() * (this.MAXLEFT + 1));
+              var x = e.clientX,
+                y = e.clientY;
+              if (
+                !(
+                  x > rLeft &&
+                  x < rLeft + this.PSIZE &&
+                  y > rTop &&
+                  rTop < rTop + this.PSIZE
+                )
+              ){
+                this.pop.style.top = rTop + "px";
+                this.pop.style.left = rLeft + "px";
+                break;
+              }
+               
+            }
+          });
+        }
+      };
+      game.init();
+    </script>
+  </body>
+</html>

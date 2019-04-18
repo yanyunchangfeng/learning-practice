@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 新的input type-->
+    <form >
+         您的邮箱:<input type="email" name="email"/><br/>
+         您的博客:<input type="url" name="url"/><br/>
+         搜索:<input type="search" name="search"/><br/>
+         您的电话:<input type="tel" name="email"/><br/>
+         您的颜色:<input type="color" name="color" onchange="" id="color"/><br/>
+         范围:<input type="range" name="range"  /><br/>
+         日期:<input type="date" name="email"/><br/>
+         成绩:<input type="number" name="number"/><br/>
+         月份:<input type="month" name="email"/><br/>
+         周:<input type="week" name="email"/><br/>
+         <button>提交</button>
+    </form> 
+    <!-- 新的表单元素-->
+    <form >
+         <datalist id="l">
+             <option >鱼香肉丝</option>
+             <option></option>
+             <option></option>
+             <option></option>
+         </datalist>
+         中午午餐：<input name="lunch" autocomplete="off" list="l"/><br/>
+         下载进度：<progress id="p1" value="0.0"></progress><br/>
+         机油量：<meter min="0" max="100" low="40" high="60" optimum="50" value="0" id="m1"></meter>
+         每月工资：<meter min="0" max="100000" low="20000" high="60000" optimum="80000" value="0" id="m2"></meter>
+         单价：￥ 100.00 数量：<input type="number" min="1" max="99" value="2">小计：￥<output>100</output><br/>
+        <button>提交</button>
+
+   </form> 
+   <!-- 新的表单属性-->
+   <form>
+       <input placeholder="请输入你的用户名" type="text" multiple name="username" autofocus autocomplete="off" /><br/>
+       <input placeholder="请输入你的邮箱" type="email" multiple name="email"/><br/>
+       <input type="file" multiple name="file"/><br/>
+       <button>提交</button>
+   </form>
+   <form id="loginform" action="5.php"></form>
+   <input type="text" placeholder="请输入用户名" form="loginform"><br>
+   <input type="password" placeholder="请输入用户名" form="loginform"><br>
+   <button form="loginform" id="button">提交</button>
+   <!-- 新的表单验证属性-->
+   <form onsubmit="onsubmit">
+       <input type="text" placeholder="请输入用户名" required><br>
+       <input type="password" placeholder="请输入" minlength="6"><br>
+       <input type="number" placeholder="请输入" min="6"><br>
+       <input type="number" placeholder="请输入" max="60"><br>
+       <input type="number" placeholder="请输入" step="5"><br>
+       <input type="week" placeholder="请输入" value=""  id="phone" onblur="onBlur(this)"><br>
+       <button>提交</button>
+   </form>
+    <script>
+        function onBlur(elem){
+            console.log(elem.validity)
+        }
+        function onsubmit(e){
+           e.preventDefault();
+           console.log(phone.validity)
+        }
+        var ptimer  = setInterval(function(){
+            var value = p1.value;
+            value+=.01;
+            p1.value =value;
+            if(value>100){
+                clearInterval(ptimer)
+            }
+        },100)
+        var mtimer  = setInterval(function(){
+            var value = m1.value;
+            value+=1;
+            m1.value =value;
+            if(value>100){
+                clearInterval(mtimer)
+            }
+        },100)
+        var m2timer  = setInterval(function(){
+            var value = m2.value;
+            value+=1000;
+            m2.value =value;
+            if(value>100000){
+                clearInterval(m2timer)
+            }
+        },100)
+        console.dir(phone.validity)
+    </script>
+</body>
+</html>
