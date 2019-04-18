@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas 绘制文本</title>
+    <style>
+        canvas {
+            background-color: #01869a;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c" width="600" height="400"></canvas>
+    <script>
+        // 提示文字的定位点默认在文本基线的起点(左侧) 
+        const ctx = c.getContext('2d');
+        // ctx.textBaseline ='alphabetic'; //文本基线，可取为top/bottom/middle/alphabetic
+        ctx.textBaseline = 'top';
+        ctx.font = "80px SimHei";
+        ctx.fillStyle = "#fff";
+        ctx.strokeStyle = "#fff";
+        const txt = "燕云长风";
+        const w = ctx.measureText(txt).width;
+        let x = 0;
+        let y = 200 - 40;
+        let speed = 5;
+        setInterval(function () {
+            ctx.clearRect(0, 0, 600, 400);
+            ctx.fillText(txt, x, y);
+            const right = 600 - w;
+            x += speed;
+            if(x>right||x<0){
+                speed =-speed
+            }
+                     
+        }, 50)
+    </script>
+
+</body>
+
+</html>
