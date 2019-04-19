@@ -52,19 +52,24 @@
                 let deg = 0 ;//进度环前进的角度
                 ctx2.textBaseLine = 'top';
                 ctx2.font = '20px SimHei';
+              
                 const timer = setInterval(function(){
-                    ctx2.clearRect(0,0,600,400);
+                    ctx2.clearRect(300-30,200-30,80,80);
                     ctx2.beginPath();
                     deg+=5;
                     ctx2.arc(x,y,r,startAngle,startAngle+deg*Math.PI/180);
                     ctx2.strokeStyle ="red "
-                    const txt =  parseInt(deg/360*100) ;
-                    ctx2.fillText(txt,300,200)
-                    if(deg >=90){
+                    const txt =  parseInt(deg/360*100) +'%';
+                    tw = ctx2.measureText(txt).width;
+                    ctx2.fillText(txt,300-tw/2,200+10)
+                    if(deg >=90&&deg<180){
                         ctx2.strokeStyle ="yellow"
                     }
-                    if(deg >=180){
-                        ctx2.strokeStyle ="red"
+                    if(deg >=180&&deg<270){
+                        ctx2.strokeStyle ="green"
+                    }
+                    if(deg >=270){
+                        ctx2.strokeStyle ="#01869a"
                     }
                     ctx2.stroke();
                     if(deg ===360){
