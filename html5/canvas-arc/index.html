@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas 绘制路径---圆拱</title>
+    <style>
+        body{
+            text-align: center;
+        }
+      canvas{
+          background-color: aqua;
+      }
+    </style>
+</head>
+<body>
+    <canvas id="c" width="600" height="400"></canvas>
+    <canvas id="c2" width="600" height="400"></canvas>
+    <script>
+        const ctx  = c.getContext('2d');
+        ctx.beginPath();
+        const x  = 300;
+        const y = 200;
+        const r  = 100;
+        const startAngle = 0;
+        const endAngle = Math.PI/180 * 180;
+        ctx.arc(x,y,r,startAngle,endAngle);
+        ctx.stroke();
+        ctx.fill();
+    </script>
+    <script>
+    {
+
+        const ctx2  = c2.getContext('2d');
+        ctx2.beginPath();
+        const x  = 300;
+        const y = 200;
+        const r  = 100;
+        ctx2.lineWidth=10;
+        const startAngle = 0;
+        const endAngle = Math.PI/180 * 360;
+        ctx2.arc(x,y,r,startAngle,endAngle);
+        ctx2.strokeStyle ="gray"
+        ctx2.stroke();
+        {
+                
+                const x  = 300;
+                const y = 200;
+                const r  = 100;
+                const startAngle = - Math.PI/180 * 90;
+                let deg = 0 ;//进度环前进的角度
+                ctx2.textBaseLine = 'top';
+                ctx2.font = '20px SimHei';
+                const timer = setInterval(function(){
+                    ctx2.clearRect(0,0,600,400);
+                    ctx2.beginPath();
+                    deg+=5;
+                    ctx2.arc(x,y,r,startAngle,startAngle+deg*Math.PI/180);
+                    ctx2.strokeStyle ="red "
+                    const txt =  parseInt(deg/360*100) ;
+                    ctx2.fillText(txt,300,200)
+                    if(deg >=90){
+                        ctx2.strokeStyle ="yellow"
+                    }
+                    if(deg >=180){
+                        ctx2.strokeStyle ="red"
+                    }
+                    ctx2.stroke();
+                    if(deg ===360){
+                        clearInterval(timer)
+                    }
+                },100)
+
+        }
+    }
+    </script>
+</body>
+</html>

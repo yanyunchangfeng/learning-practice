@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas 绘制路径</title>
+    <style>
+        body{
+            text-align: center;
+        }
+      canvas{
+          background-color: aqua;
+      }
+    </style>
+</head>
+<body>
+    <canvas id="c" width="600" height="400"></canvas>
+    <canvas id="c2" width="600" height="400"></canvas>
+    <script>
+       //从左上角到右下角的直线
+       const ctx = c.getContext('2d');
+       ctx.beginPath();
+       ctx.moveTo(10,10);
+       ctx.lineTo(600-10,400-10);
+       ctx.lineTo(600-10,10);
+       //ctx.closePath();
+       //路径本身不可见，必须用于 填充，描边，裁剪
+       ctx.lineWidth = 5;
+       ctx.strokeStyle = "#e4393a";
+       ctx.stroke();
+       ctx.fillStyle = "#01849a"
+       ctx.fill();
+
+       //绘制坐标轴
+        const ctx2 = c2.getContext('2d');
+
+        // x
+        ctx2.beginPath();
+        ctx2.moveTo(50,400-50);
+        ctx2.lineTo(600-50,400-50);
+        ctx2.lineTo(600-50-20,400-50-20);
+        ctx2.moveTo(600-50,400-50);
+        ctx2.lineTo(600-50-20,400-50+20);
+        ctx2.strokeStyle = "#e4393a";
+        ctx2.lineWidth =5;
+        ctx2.lineJoin = 'round';
+        ctx2.stroke();
+        //y 
+        ctx2.beginPath();
+        ctx2.moveTo(50-20,50+20);
+        ctx2.strokeStyle = "green";
+        ctx2.lineTo(50,50);
+        ctx2.lineTo(50+20,50+20);
+        ctx2.moveTo(50,50);
+        ctx2.lineTo(50,400-50);
+        ctx2.stroke();
+
+    </script>
+</body>
+</html>
