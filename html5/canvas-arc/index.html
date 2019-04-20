@@ -17,6 +17,7 @@
 <body>
     <canvas id="c" width="600" height="400"></canvas>
     <canvas id="c2" width="600" height="400"></canvas>
+    <canvas id="c3" width="600" height="400"></canvas>
     <script>
         const ctx  = c.getContext('2d');
         ctx.beginPath();
@@ -65,20 +66,101 @@
                     if(deg >=90&&deg<180){
                         ctx2.strokeStyle ="yellow"
                     }
-                    if(deg >=180&&deg<270){
+                    if(deg >= 180 &&deg<270){
                         ctx2.strokeStyle ="green"
                     }
-                    if(deg >=270){
+                    if(deg >= 270){
                         ctx2.strokeStyle ="#01869a"
                     }
                     ctx2.stroke();
-                    if(deg ===360){
+                    if(deg === 360){
                         clearInterval(timer)
                     }
                 },100)
 
         }
     }
+    </script>
+    <script>
+       {
+           const ctx = c3.getContext('2d');
+           function openMouth(){
+               
+               ctx.beginPath()
+               const  x = 400;
+               const  y = 300;
+               const  r = 100;
+               const  startAngle = Math.PI/180 *30;
+               const  endAngle = Math.PI/180 *330;
+               ctx.arc(x-100,y-100,r,startAngle,endAngle);
+               ctx.lineTo(300,200);
+               ctx.closePath();
+               ctx.fillStyle = 'yellow';
+               ctx.fill();
+               ctx.stroke();
+             
+
+               //眼睛的外框
+               ctx.beginPath();
+               ctx.arc(300,150,25,0,2 * Math.PI);
+               ctx.stroke();
+               ctx.fillStyle ="red"
+               ctx.fill();
+
+               //两个眼神光
+
+               ctx.beginPath();
+               ctx.arc(315,140,5,0,2*Math.PI);
+               ctx.arc(307,132,3,0,2*Math.PI);
+              
+               ctx.fillStyle="white";
+               ctx.fill();
+           }
+           function closeMouth(){
+            ctx.beginPath()
+               const  x = 400;
+               const  y = 300;
+               const  r = 100;
+               const  startAngle = Math.PI/180 * 0;
+               const  endAngle = Math.PI/180 *360;
+               ctx.arc(x-100,y-100,r,startAngle,endAngle);
+               ctx.lineTo(300,200);
+               ctx.closePath();
+               ctx.fillStyle = 'yellow';
+               ctx.fill();
+               ctx.stroke();
+             
+
+               //眼睛的外框
+               ctx.beginPath();
+               ctx.arc(300,150,25,0,2 * Math.PI);
+               ctx.stroke();
+               ctx.fillStyle ="red"
+               ctx.fill();
+
+               //两个眼神光
+
+               ctx.beginPath();
+               ctx.arc(315,140,5,0,2*Math.PI);
+               ctx.arc(307,132,3,0,2*Math.PI);
+              
+               ctx.fillStyle="white";
+               ctx.fill();
+           }
+           let isOpen = false;
+           setInterval(
+               function(){
+                ctx.clearRect(0,0,600,400);
+                   if(isOpen){
+                       closeMouth();
+                       isOpen = false;
+                   }else{
+                       openMouth();
+                       isOpen = true;
+                   }
+               },500
+           )
+       }
     </script>
 </body>
 </html>
