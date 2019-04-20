@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用svg绘图  ---渐变对象</title>
+     <style>
+       svg {
+           background-color: darkgray
+       }
+     </style>
+</head>
+<body>
+    <svg width="600" height="400">
+        <!-- 渐变属于特效， 必须声明在”特效列表中“-->
+        <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="100%" y2="0">
+                <stop offset="0" stop-color="#f00"></stop>
+                <stop offset="50%" stop-color="#0f0"></stop>
+                <stop offset="100%" stop-color="#00f"></stop>
+            </linearGradient>
+        </defs>
+
+        <text fill="url(#g1)" alignment-baseline="before-edge">yanyuncahngfeng</text>
+    </svg>
+</body>
+</html>
