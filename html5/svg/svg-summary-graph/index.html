@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>svg 元素 绘制统计图</title>
+    <style>
+     svg{
+         background-color: aqua;
+     }
+    </style>
+</head>
+
+<body>
+    <svg id="s1"></svg>
+    <script>
+        const w = 800;
+        const h = 600;
+        s1.setAttribute('width', w);
+        s1.setAttribute('height', h);
+        const data = [
+            { label: '大漠穷秋', value: 400 },
+            { label: '燕云长风', value: 500 },
+            { label: '大漠穷秋', value: 200 },
+            { label: '燕云长风', value: 100 },
+            { label: '大漠穷秋', value: 300 },
+            { label: '燕云长风', value: 450 },
+        ];
+        const count = data.length;
+        for (let i = 0; i < count; i++) {
+            const temp = data[i];
+            const colWidth = (w-100) / (2 * count + 1);
+            const rw = colWidth;
+            const rh = temp.value;
+            const x = (i*2+1)*colWidth+50;
+            const y = h-rh;
+            const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+            rect.setAttribute('width',colWidth);
+            rect.setAttribute('height',rh);
+            rect.setAttribute('x',x);
+            rect.setAttribute('y',y);
+            rect.setAttribute('fill','red')
+            s1.appendChild(rect)
+            // break;
+        }
+
+
+        // s1.appendChild(fragElem)
+    </script>
+</body>
+
+</html>

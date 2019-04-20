@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用SVG 绘制多边形</title>
+    <style>
+       body{
+           text-align: center;
+       }
+       
+       svg{
+           background-color: aqua;
+       }
+    </style>
+    <!--所有的svg图形只有填充色，没有stroke 直线的话没有描边色，不会显示-->
+</head>
+<body>
+    <svg width="600" height="400">
+        <!-- g 小组-->
+        <!-- 折线图默认会闭合路径 ，填充颜色，只需把填充透明度设为0即可-->
+        <g stroke="red"  >
+                <polygon points="0,0 150,100 300,0"></polygon>
+                <polygon points="0,50  0,200 300,200 300,50 150, 150"></polygon>
+        </g>
+        
+        
+    </svg>
+</body>
+</html>

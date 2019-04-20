@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用SVG 绘制直线</title>
+    <style>
+       body{
+           text-align: center;
+       }
+       svg{
+           background-color: aqua;
+       }
+    </style>
+    <!--所有的svg图形只有填充色，没有stroke 直线的话没有描边色，不会显示-->
+</head>
+<body>
+    <svg width="600" height="400">
+        <!-- g 小组-->
+        <g stroke="red" stroke-width="50">
+                <line x1="50" y1="50" x2="300" y2="50" id="l1"></line>
+                <line x1=" 400" y1="50" x2="500" y2="50" id="l1"></line>
+                <line x1="50" y1="120" x2="300" y2="120" id="l1"></line>
+                <line x1=" 400" y1="120" x2="500" y2="120" id="l1"></line>
+        </g>
+        
+        
+    </svg>
+</body>
+</html>
