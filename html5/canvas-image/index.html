@@ -20,7 +20,8 @@
 <body>
     <canvas width="600" height="400" id="c"></canvas>
     <canvas width="600" height="400" id="c2"></canvas>
-    <canvas width="600" height="400" id="c3"></canvas>
+    <canvas width="600" height="400" id="c3"></canvas><br>
+    <canvas  id="c4"></canvas>
     <script>
         {
             const ctx = c.getContext('2d');
@@ -112,6 +113,63 @@
 
             }
         }
+    </script>
+    <script>
+      {
+          const ctx = c4.getContext('2d');
+          const w  = 400;
+          const h = 500;
+          c4.width = w;
+          c4.height = h;
+          let progress = 0;
+          const img = new Image();
+  
+          img.src = './yanyunchangfeng.png';
+
+          const playImg = new Image();
+          playImg.src = './play.png';
+
+          img.onload = function (){
+              progress+=20;
+              if(progress ===100){
+                  startDraw();
+              }
+
+          }
+          playImg.onload = function (){
+              progress+= 80;
+              if(progress ===100 ){
+                  startDraw();
+              }
+          }
+          function startDraw(){
+            console.log('所有图片加载完成');
+
+            //绘制背景
+            ctx.drawImage(img,0,0,w,h);
+            img.style.borderRadius = "50%";
+            console.dir(img)
+            //绘制黑色胶片
+            ctx.beginPath();
+            ctx.arc(w/2,h/2,130,0,2* Math.PI);
+            ctx.fill();
+            ctx.drawImage(img,w/2-100,h/2-100,200,200);
+            ctx.drawImage(playImg,w/2-50,h-100,100,100);
+          }
+          c4.onclick = function(e){
+             let x = e.offsetX;
+             let y = e.offsetY;
+             const r = 50;
+             let cx = w/2;
+             let cy = h-r;
+
+             if(Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy))<=r){
+                 console.log('播放按钮被点击了')
+             }
+
+          }
+
+      }
     </script>
 </body>
 
