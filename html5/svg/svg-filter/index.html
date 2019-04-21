@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>svg defs filter </title>
+    <style>
+       body{
+           text-align: center;
+       }
+       svg{
+           background-color: aqua;
+       }
+    </style>
+</head>
+<body>
+    <svg id="s1">
+        <defs>
+            <filter id="f1">
+                <feGaussianBlur stdDeviation="1"></feGaussianBlur>
+            </filter>
+        </defs>
+        <g stroke="red" stroke-width="1" filter="url(#f1)">
+            <text alignment-baseline="before-edge" x="260" y="265" font-size="70">燕云长风</text>
+        </g>
+    
+    </svg>
+    <script>
+      {
+        const w = 800;
+        const h = 600;
+        s1.setAttribute('width',w);
+        s1.setAttribute('height',h);
+
+      }
+    </script>
+</body>
+</html>
