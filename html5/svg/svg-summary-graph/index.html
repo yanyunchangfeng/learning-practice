@@ -14,7 +14,19 @@
 </head>
 
 <body>
-    <svg id="s1"></svg>
+    <svg id="s1">
+        <g stroke="red">
+            <line x1="50" y1="550" x2="750" y2="550"></line>
+            <line x1="750" y1="550" x2="730" y2="530"></line>
+            <line x1="750" y1="550" x2="730" y2="570"></line>
+            <line x1="50" y1="550" x2="50" y2="50"></line>
+            <line x1="50" y1="50" x2="30" y2="70"></line>
+            <line x1="50" y1="50" x2="70" y2="70"></line>
+        </g>
+        <defs id="deflist">
+             
+        </defs>
+    </svg>
     <script>
         const w = 800;
         const h = 600;
@@ -29,25 +41,39 @@
             { label: '燕云长风', value: 450 },
         ];
         const count = data.length;
+        let html='';
+        const frag = document.createDocumentFragment();
         for (let i = 0; i < count; i++) {
+            const c = rc();
             const temp = data[i];
             const colWidth = (w-100) / (2 * count + 1);
             const rw = colWidth;
             const rh = temp.value;
             const x = (i*2+1)*colWidth+50;
-            const y = h-rh;
+            const y = h-rh-50;
             const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+             html +=`
+                <linearGradient id="g${i}" x1="0" y1="0" x2="0" y2="100%">
+                    <stop offset="0" stop-color="${c}"></stop>
+                    <stop offset="100%" stop-color="${c}" stop-opacity="0"></stop>
+                </linearGradient>
+            `;
             rect.setAttribute('width',colWidth);
             rect.setAttribute('height',rh);
             rect.setAttribute('x',x);
             rect.setAttribute('y',y);
-            rect.setAttribute('fill','red')
-            s1.appendChild(rect)
-            // break;
+           
+            rect.setAttribute('fill',`url(#g${i})`)
+            frag.appendChild(rect);
         }
-
-
-        // s1.appendChild(fragElem)
+        deflist.innerHTML = html;
+        s1.appendChild(frag)
+        function rc(){
+            const r = Math.floor(Math.random()*256);
+            const g = Math.floor(Math.random()*256);
+            const b = Math.floor(Math.random()*256);
+            return `rgb(${r},${g},${b})`
+        }
     </script>
 </body>
 
