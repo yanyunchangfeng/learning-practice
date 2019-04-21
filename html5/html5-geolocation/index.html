@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5 geolocation</title>
+</head>
+<body>
+    <button id="btn">获取当前浏览器所在的定位信息</button>
+     <script>
+        btn.onclick = function(){
+          navigator.geolocation.getCurrentPosition(succfn,errfn)
+        }
+        function succfn(pos){
+            console.log( '维度'+ pos.coords.latitude)
+            console.log( '经度'+ pos.coords.longitude)
+        }
+        function errfn(err){
+            console.dir(err)
+        }
+     </script>
+</body>
+</html>
