@@ -7,7 +7,7 @@
 }()
 
 +function(num){
-  if(num>0){ arguments.callee(num-1),console.log(num)}
+  if(num>0){ arguments.callee(num-1),console.log(num)}//1 2 3 4 5
 }(5);
 
 (()=>{
