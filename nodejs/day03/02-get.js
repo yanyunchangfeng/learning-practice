@@ -1,9 +1,9 @@
 //使用get方法发送请求
 var http = require('http');
 var options = {
-   hostname:'www.tmooc.cn',
+   hostname:'zhuanlan.zhihu.com',
    port:80,
-   path:'/web/index_new.html',
+   path:'/yanyunchangfeng',
 }
 var req = http.get(options,(res)=>{
 //   console.log(res.statusCode)
