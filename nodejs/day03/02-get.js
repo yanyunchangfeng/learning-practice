@@ -3,7 +3,7 @@ var http = require('http');
 var options = {
    hostname:'zhuanlan.zhihu.com',
    port:80,
-   path:'/yanyunchangfeng',
+   path:'/yanyunchangfeng/index.html',
 }
 var req = http.get(options,(res)=>{
 //   console.log(res.statusCode)
