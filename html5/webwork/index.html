@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5 WebWork 的使用
+    </title>
+</head>
+
+<body>
+    <h3>UI主线程和Worker线程间的通讯</h3>
+    <h4>UI主线程：负责操作DOM，读取数据，显示结果</h4>
+    <h4>Worker线程：负责运算</h4>
+
+    <input id="num"><button id="btn">开始质数判定</button>
+    <div id="result">结算结果：....</div>
+    <script>
+       btn.onclick = function(){
+           var n = num.value;
+           var w = new Worker('./isPrime.js');
+           w.postMessage(n);
+           w.onmessage = function(e){
+             result.innerHTML = e.data
+           }
+       }
+    </script>
+</body>
+
+</html>
