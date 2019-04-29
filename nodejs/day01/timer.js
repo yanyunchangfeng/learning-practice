@@ -14,7 +14,7 @@ var timer2 = setInterval(function(){
     }
 },1000)
 
-//使用一次性定时器模拟周期性定时器效果
+// 使用一次性定时器模拟周期性定时器效果
 var counter3 = 0;
 var timer3 = setTimeout(function (){
   counter3++;
@@ -33,7 +33,21 @@ var timer3 = setTimeout(function (){
 
 setTimeout(function(){
 console.log('setTimeout')
-},3)
+},2)
+//当为小于2毫秒时 ，运行结果如下
+// end
+// nextTick1
+// nextTick2
+// setTimeout
+// setImmediate1
+// setImmediate2
+// 当timer大于三
+// end
+// nextTick1
+// nextTick2
+// setImmediate1
+// setImmediate2
+// setTimeout
 setImmediate(function(){
     console.log('setImmediate1')
 })
