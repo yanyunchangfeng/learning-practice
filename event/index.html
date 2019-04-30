@@ -27,7 +27,8 @@
 
         const form = document.querySelector('form');
         const textarea = document.querySelector('textarea');
-        const awesome = new CustomEvent('awesome', {
+        {
+            const awesome = new CustomEvent('awesome', {
             bubbles: true,
             detail: {
                 text: () => textarea.value
@@ -36,15 +37,23 @@
         form.addEventListener('awesome', e => console.log(e.detail.text()));
         textarea.addEventListener('input', e => e.target.dispatchEvent(awesome));
 
-        //动态创建和派发事件   元素可以监听未创建的事件
+        }
+    
 
-        form.addEventListener('awesome', e => e.detail.text());
+        //动态创建和派发事件   元素可以监听未创建的事件
+  {
+
+    form.addEventListener('awesome', e => console.log(e.detail.text()));
         textarea.addEventListener('input', function () {
             this.dispatchEvent(new CustomEvent('awesome', {
                 bubbles: true,
-                detail: textarea.value
+                detail: {
+                    text:() => textarea.value
+                }
             }))
         })
+
+  }
        //触发内置事件
         const  chb =  document.getElementById('checkbox');
         function addHandler(){
